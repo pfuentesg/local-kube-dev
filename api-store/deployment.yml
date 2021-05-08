@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: api-store
+  name: api-store
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-store
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: api-store
+    spec:
+      containers:
+      - image: pfuentesg/api-store:1.0.0
+        name: api-store
+        ports:
+        - containerPort: 5000
+        env:
+          - name: PORT
+            value: "5000"
+status: {}

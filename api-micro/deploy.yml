@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: api-micro
+  name: api-micro
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-micro
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: api-micro
+    spec:
+      containers:
+      - image: pfuentesg/api-micro:1.0.0
+        name: api-micro
+        ports:
+        - containerPort: 5000
+        env:
+          - name: PORT
+            value: "5000"
+          - name: STORE_SERVICE_URL
+            value: "api-store"
+        resources: {}
+status: {}
