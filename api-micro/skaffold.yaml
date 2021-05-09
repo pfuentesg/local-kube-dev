@@ -1,0 +1,20 @@
+apiVersion: skaffold/v2beta13
+kind: Config
+metadata:
+  name: api-micro
+build:
+  artifacts:
+  - image: pfuentesg/api-micro
+    docker:
+      dockerfile: Dockerfile
+portForward:
+- resourceType: deployment
+  resourceName: api-micro
+  namespace: default
+  port: 5000
+  localPort: 5000
+deploy:
+  kubectl:
+    manifests:
+    - deploy.yml
+    - svc.yml
